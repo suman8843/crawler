@@ -33,12 +33,15 @@ class Spider:
     @staticmethod
     def crawl_page(thread_name, page_url):
         if page_url not in Spider.crawled:
-            print(thread_name + ' crawling ' + page_url)
+            #print(thread_name + ' crawling ' + page_url)
             print('Queue ' + str(len(Spider.queue)) + ' | crawled ' + str(len(Spider.crawled)))
-            Spider.add_links_to_queue(Spider.gather_links(page_url))
-            Spider.queue.remove(page_url)
-            Spider.crawled.add(page_url)
-            Spider.update_files()
+            try:
+                Spider.add_links_to_queue(Spider.gather_links(page_url))
+                Spider.queue.remove(page_url)
+                Spider.crawled.add(page_url)
+                Spider.update_files()
+            except:
+                pass
 
     @staticmethod
     def gather_links(page_url):

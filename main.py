@@ -10,7 +10,7 @@ DOMAIN_NAME = get_domain_name(HOMEPAGE)
 QUEUE_FILE = PROJECT_NAME + '/queue.txt'
 CRAWLED_FILE = PROJECT_NAME + '/crawled.txt'
 CVE_DB = PROJECT_NAME + '/cve_db.txt'
-NUMBER_OF_THREADS = 8
+NUMBER_OF_THREADS = 15
 queue = Queue()
 Spider(PROJECT_NAME, HOMEPAGE, DOMAIN_NAME)
 

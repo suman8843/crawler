@@ -18,7 +18,7 @@ class LinkFinder(HTMLParser):
                 if attribute == 'href':
                     #url = parse.urljoin(self.base_url, value)
                     url = value
-                    print(url)
+                    #print(url)
                     if 'www.exploit-db.com/exploits/' in url:
                         self.links.add(url)
                     if 'https://www.exploit-db.com/search/?action=search&cve=' in url:
