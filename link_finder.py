@@ -1,6 +1,5 @@
 from html.parser import HTMLParser
 from urllib import parse
-from general import append_to_file
 from general import add_cve
 
 
@@ -13,19 +12,17 @@ class LinkFinder(HTMLParser):
         self.links = set()
 
     def handle_starttag(self, tag, attrs):
+        cve_db = 'Exploit-DB/cve_db.txt'
         if tag == 'a':
             for (attribute, value) in attrs:
                 if attribute == 'href':
-                    if 'exploits' in url:
-                        url = parse.urljoin(self.base_url, value)
-                        if 'www.exploit-db.com/exploits/' in url:
-                            self.links.add(url)
-                            print("url")
-                    elif 'https://www.exploit-db.com/search/?action=search&cve=' in url:
+                    #url = parse.urljoin(self.base_url, value)
+                    url = value
+                    print(url)
+                    if 'www.exploit-db.com/exploits/' in url:
+                        self.links.add(url)
+                    if 'https://www.exploit-db.com/search/?action=search&cve=' in url:
                         add_cve('Exploit-DB', url)
-                        print("cve")
-                    else:
-                        append_to_file('', )
 
     def page_links(self):
         return self.links

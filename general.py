@@ -12,10 +12,14 @@ def create_project_dir(directory):
 def create_data_files(project_name, base_url):
     queue = project_name + '/queue.txt'
     crawled = project_name + '/crawled.txt'
+    cve_db = project_name + '/cve_db.txt'
     if not os.path.exists(queue):
         write_file(queue, base_url)
     if not os.path.exists(crawled):
         write_file(crawled, '')
+    if not os.path.exists(cve_db):
+        write_file(cve_db, '')
+
 
 
 # Create a new file
@@ -54,7 +58,6 @@ def set_to_file(links, file):
 
 
 def add_cve(project_name, url):
-    print("cve")
     cve_db = project_name + '/cve_db.txt'
-    if not os.path.exists(cve_db):
-        write_file(cve_db,url)
+    if url not in cve_db:
+        append_to_file(cve_db, url)
