@@ -36,7 +36,7 @@ class Spider:
             #print(thread_name + ' crawling ' + page_url)
             print('Queue ' + str(len(Spider.queue)) + ' | crawled ' + str(len(Spider.crawled)))
             try:
-                Spider.add_links_to_queue(Spider.gather_links(page_url))
+                Spider.add_links_to_queue(Spider.gather_links(thread_name, page_url))
                 Spider.queue.remove(page_url)
                 Spider.crawled.add(page_url)
                 Spider.update_files()
@@ -44,7 +44,7 @@ class Spider:
                 pass
 
     @staticmethod
-    def gather_links(page_url):
+    def gather_links(thread_name, page_url):
         try:
             response = urlopen(page_url)
             html_bytes = response.read()
@@ -61,7 +61,7 @@ class Spider:
                 finder = LinkFinder(Spider.base_url, page_url)
                 finder.feed(html_string)
             except:
-                print('Cannot crawl ' + page_url)
+                print(thread_name + ' cannot crawl ' + page_url)
                 return set()
         return finder.page_links()
 

@@ -43,7 +43,7 @@ def create_jobs():
 def crawl():
     queued_links = file_to_set(QUEUE_FILE)
     if len(queued_links) > 0:
-        print(str(len(queued_links)) + 'links in the queue')
+        print(str(len(queued_links)) + ' links in the queue')
         create_jobs()
 
 
